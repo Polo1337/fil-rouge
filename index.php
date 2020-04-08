@@ -57,7 +57,7 @@ header('Content-type: text/html; charset=utf-8');
 
 <body>
 
-    <!--TOGGLE MOBILEeeeeeeeeeeeeeeeeeeeeeeeee-->
+    <!--TOGGLE MOBILEeeeeeeeeee-->
 
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="index.php">ALLO SIMPLON</a>
