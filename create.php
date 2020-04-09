@@ -11,15 +11,18 @@ if (!(isset($_POST['INSCRIPTION']))) {
     //On se connecte
     function create_user($user, $mdp, $mail)
     {
-        $DB_NAME = "dbs296631"; //database_name
-        //$DB_DSN = "mysql:127.0.0.1:3308;dbname=" . $DB_NAME; //database_datasourcename
-        $DB_DSN = "mysql:host=db5000303644.hosting-data.io;dbname=" . $DB_NAME; //database_datasourcename
-        $DB_USER = "dbu526586"; //database_user
-        $DB_PASSWORD = "u:Z2H^7n"; //database_mot_de_passe
+        $DB_NAME = "allo_simplon"; //database_name dbs296631
+        $DB_DSN = "mysql:127.0.0.1:3308;dbname=" . $DB_NAME; //database_datasourcename "mysql:host=db5000303644.hosting-data.io;dbname=" . $DB_NAME;
+        $DB_USER = "root"; //database_user dbu526586
+        $DB_PASSWORD = ""; //database_mot_de_passe u:Z2H^7n
+        //$DB_NAME = "dbs296631"; //database_name
+        //$DB_DSN = "mysql:host=db5000303644.hosting-data.io;dbname=" . $DB_NAME; //database_datasourcename
+        //$DB_USER = "dbu526586"; //database_user
+        //$DB_PASSWORD = "u:Z2H^7n"; //database_mot_de_passe
         try {
             $bdd = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
             $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Configure un attribut PDO
-            $query = $bdd->prepare("SELECT user FROM users WHERE user=:user OR mail=:mail"); // verifie que les données rentrées sont bonnes par rapport a la bdd 
+            $query = $bdd->prepare("SELECT user FROM users WHERE user=:user OR mail=:mail"); // verifie que les données rentrées sont bonnes par rapport a la bdd
             $query->execute(array(':user' => $user, ':mail' => $mail)); // Exécute une requête préparée
             $val = $query->fetch(); //recupere les valeurs
             if ($val != null) {
