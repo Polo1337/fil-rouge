@@ -3,35 +3,32 @@
 
 <div class="acteurs-titre">Acteurs</div>
 
+
+
 <section class="liste-acteurs">
-    <div class="acteur">
-        <img class="img-acteur" src="./img/acteur1.jfif" alt="">
-        <div>Cho Yeo-jeong</div>
-    </div>
 
-    <div class="acteur">
-        <img class="img-acteur" src="./img/acteur2.jfif" alt="">
-        <div>Park So-dam</div>
-    </div>
+    <?php include('connectbdd.php');
 
-    <div class="acteur">
-        <img class="img-acteur" src="./img/acteur3.jfif" alt="">
-        <div>Choi Woo-sik</div>
-    </div>
+    $id = $_GET['id'];
 
-    <div class="acteur">
-        <img class="img-acteur" src="./img/acteur4.jfif" alt="">
-        <div>Jung Ji-so</div>
-    </div>
+    $req = $bdd->prepare("SELECT f.id_film, f.titre, a.id_acteur, a.nom, a.prenom, a.photo_acteur, j.id_film, j.id_acteur  
+                        FROM acteur a, film f, jouer j  
+                        WHERE j.id_film = f.id_film
+                        AND j.id_acteur = a.id_acteur
+                        AND j.id_film = $id");
 
-    <div class="acteur">
-        <img class="img-acteur" src="./img/acteur5.jfif" alt="">
-        <div>Song Kang-ho</div>
-    </div>
+    $req->execute();
+    while ($donnees = $req->fetch()) {
 
-    <div class="acteur">
-        <img class="img-acteur" src="./img/acteur6.jfif" alt="">
-        <div>Lee Sun Gyun</div>
-    </div>
+
+    ?>
+        <div class="acteur">
+            <img class="img-acteur" src=<?php echo $donnees['photo_acteur']; ?> alt="">
+            <div>
+                <p><?php echo $donnees['nom'] . "   " . $donnees['prenom']; ?></p>
+            </div>
+        </div>
+
+    <?php } ?>
 
 </section>

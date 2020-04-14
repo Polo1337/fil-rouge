@@ -1,5 +1,13 @@
 <!--INFO FILM-->
+<?php include('connectbdd.php');
 
+$id = $_GET['id'];
+
+$req = $bdd->prepare("SELECT duree, note, date_de_sortie FROM film WHERE id_film=$id");
+$req->execute();
+
+$donnees = $req->fetch();
+?>
 
 <div class="rond-titre">Résumé</div>
 
@@ -9,7 +17,7 @@
 
     <div class="ronds-bis">
         <div class="ronds-ronds">
-            2h12
+            <p><?php echo $donnees['duree']; ?></p>
         </div>
         Durée
     </div>
@@ -17,7 +25,7 @@
 
     <div class="ronds-bis">
         <div class="ronds-ronds">
-            4.5/5
+            <p><?php echo $donnees['note']; ?>/5</p>
         </div>
         Note
     </div>
@@ -25,7 +33,7 @@
 
     <div class="ronds-bis">
         <div class="ronds-ronds">
-            5 juin 2019
+            <p><?php echo $donnees['date_de_sortie']; ?></p>
         </div>
         Date de sortie
     </div>
